@@ -34,8 +34,8 @@ function buildSlackAttachments({ status, color, github }) {
   }
 
   let customFields = [];
-  if (event === 'workflow_dispatch') {
-    const { inputs } = github.context;
+  if (event === 'workflow_dispatch' && payload.inputs) {
+    const { inputs } = payload;
     for (const eventInput of Object.keys(inputs)) {
       if (['string', 'boolean', 'number'].includes(typeof eventInput)) {
         customFields.push({
