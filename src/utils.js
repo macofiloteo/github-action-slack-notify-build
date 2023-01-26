@@ -33,7 +33,7 @@ function buildSlackAttachments({ status, color, github }) {
       };
   }
 
-  customFields = [];
+  let customFields = [];
   if (event === 'workflow_dispatch') {
     const { inputs } = github.context;
     for (const eventInput of Object.keys(inputs)) {

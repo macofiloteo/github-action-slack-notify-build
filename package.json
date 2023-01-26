@@ -10,7 +10,8 @@
   "dependencies": {
     "@actions/core": "^1.2.6",
     "@actions/github": "^1.1.0",
-    "@slack/web-api": "^5.3.0"
+    "@slack/web-api": "^5.3.0",
+    "dotenv": "^16.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
