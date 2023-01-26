@@ -10002,7 +10002,7 @@ module.exports = resolveCommand;
 const { context } = __webpack_require__(469);
 
 function buildSlackAttachments({ status, color, github }) {
-  const { payload, ref, workflow, eventName } = github.context;
+  const { payload, ref, workflow, eventName, actor } = github.context;
   const { owner, repo } = context.repo;
   const event = eventName;
   const branch = event === 'pull_request' ? payload.pull_request.head.ref : ref.replace('refs/heads/', '');
@@ -10021,8 +10021,8 @@ function buildSlackAttachments({ status, color, github }) {
       break;
     case 'workflow_dispatch':
       referenceLink = {
-        title: 'Manually Triggered',
-        value: `<https://github.com/${owner}/${repo}/commit/${sha} | ${branch}>`,
+        title: 'Triggered By',
+        value: actor,
         short: true,
       };
       break;
@@ -10069,11 +10069,11 @@ function buildSlackAttachments({ status, color, github }) {
         },
         referenceLink,
         ...customFields,
-        {
-          title: 'Event',
-          value: event,
-          short: true,
-        },
+        // {
+        //   title: 'Event',
+        //   value: event,
+        //   short: true,
+        // },
       ],
       footer_icon: 'https://github.githubassets.com/favicon.ico',
       footer: `<https://github.com/${owner}/${repo} | ${owner}/${repo}>`,
